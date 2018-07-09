@@ -13,7 +13,7 @@ class Teacher  extends Person{
         }
     }
     introduceWith(student){
-        if(this.klass.number===student.klass.number){
+        if(this.klass.equal(student.klass)){
             return super.introduce() + " I am a Teacher. I teach "+student.name+".";
         }
         else{

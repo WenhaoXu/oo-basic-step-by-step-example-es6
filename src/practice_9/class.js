@@ -17,5 +17,8 @@ class Class{
     appendMember(student){
             student.klass=this;
     }
+    equal(klass){
+        return klass.number===this.number;
+    }
 }
 module.exports={Class}

@@ -1,6 +1,5 @@
 
 const {Person}= require("./person");
-// const {Class} =require("./class")
 class Student  extends Person{
     constructor(id,name ,age,Class){
         super(id,name,age);

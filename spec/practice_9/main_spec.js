@@ -83,6 +83,27 @@ describe("Person", () => {
                 expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I teach No Class.");
             });
         });
+
+        describe("#introduceWith", () => {
+            let studentJerry;
+
+            // before(() => {
+            klass = new Class(2);
+                studentJerry = new Student(1, "Jerry", 8, klass);
+            // });
+
+            it("should return I am teaching some guy, given my class is same with this guy's class", () => {
+                const teacher = new Teacher(1, "Tom", 21, klass);
+                const introduce = teacher.introduceWith(studentJerry);
+                expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I teach Jerry.");
+            });
+
+            it("should return I am teaching some guy, given my class is different with this guy's class", () => {
+                const teacher = new Teacher(1, "Tom", 21, new Class(10));
+                const introduce = teacher.introduceWith(studentJerry);
+                expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I don't teach Jerry.");
+            });
+        });
     });
 });
 
@@ -130,14 +151,15 @@ describe("Class", () => {
         });
 
         it("should not assign student as Leader, given student is not class member", () => {
+            spyOn(console, 'log');
             const klass = new Class(2);
             const otherKlass = new Class(3);
             const student = new Student(1, "Jerry", 21, otherKlass);
 
             klass.assignLeader(student);
-
-            expect(klass.leader).not.toEqual(student);
             expect(console.log).toHaveBeenCalledWith("It is not one of us.");
+            expect(klass.leader).not.toEqual(student);
+
             // expect()
             //expect(console.log.getCall(0).args[0]).toEqual("It is not one of us."); //assert style 2.
             // expect(spy.calledWith("It is not one of us.")).to.be.ok;
