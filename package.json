@@ -13,7 +13,8 @@
   },
   "homepage": "https://school.thoughtworks.cn",
   "scripts": {
-    "test": "mocha spec/**/*.js --require babel/register --require source-map-support/register"
+    "test": "mocha spec/**/*.js --require babel/register --require source-map-support/register",
+    "test-single": "jasmine-node --verbose "
   },
   "dependencies": {
     "lodash": "3.9.3"
@@ -23,6 +24,7 @@
     "mocha": "^4.0.1",
     "sinon": "^4.0.1",
     "sinon-chai": "^2.14.0",
-    "source-map-support": "^0.3.3"
+    "source-map-support": "^0.3.3",
+    "jasmine-node": "1.14.5"
   }
 }
