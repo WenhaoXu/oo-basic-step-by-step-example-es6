@@ -64,7 +64,7 @@ describe("Person", () => {
             });
 
             it("should overwrite Person introduce, introduce with name, age and class number, given teacher have no class", () => {
-                
+
                 const teacher = new Teacher("Tom", 21);
                 const introduce = teacher.introduce();
                 expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I teach No Class.");
@@ -74,17 +74,21 @@ describe("Person", () => {
         describe("#introduceWith", () => {
             let studentJerry;
 
-            beforeAll(() => {
-                studentJerry = new Student("Jerry", 8, klass);
-            });
+            // beforeAll(() => {
+            //     studentJerry = new Student("Jerry", 8, klass);
+            // });
 
             it("should return I am teaching some guy, given my class is same with this guy's class", () => {
+                klass = new Class(2);
+                studentJerry = new Student("Jerry", 8, klass);
                 const teacher = new Teacher("Tom", 21, klass);
                 const introduce = teacher.introduceWith(studentJerry);
                 expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I teach Jerry.");
             });
 
             it("should return I am teaching some guy, given my class is different with this guy's class", () => {
+                klass = new Class(2);
+                studentJerry = new Student("Jerry", 8, klass);
                 const teacher = new Teacher("Tom", 21, new Class(10));
                 const introduce = teacher.introduceWith(studentJerry);
                 expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I don't teach Jerry.");

@@ -11,12 +11,16 @@ class Teacher  extends Person{
             return super.introduce()+" I am a Teacher. I teach No Class.";
         else {
 
-            return super.introduce() + " I am a Teacher. I teach Class " + this.klass.getDisplayName() + ".";
+            return super.introduce() + " I am a Teacher. I teach " + this.klass.getDisplayName() + ".";
         }
     }
     introduceWith(student){
-        if(this.klass)
-        return ;
+        if(this.klass.number===student.klass.number){
+            return super.introduce() + " I am a Teacher. I teach "+student.name+".";
+        }
+       else{
+            return super.introduce() + " I am a Teacher. I don't teach "+student.name+".";
+        }
     }
 }
 
