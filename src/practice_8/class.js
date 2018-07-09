@@ -12,5 +12,8 @@ class Class{
         if(student.klass===this)
           this.leader=student;
     }
+    equal(klass){
+        return klass.number===this.number;
+    }
 }
 module.exports={Class}

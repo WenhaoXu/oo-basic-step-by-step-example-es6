@@ -1,5 +1,9 @@
 "use strict";
 
+const {Person} =require("../../src/practice_9/person") ;
+const {Student} =require("../../src/practice_9/student") ;
+const {Teacher} =require("../../src/practice_9/teacher") ;
+const{Class}=require("../../src/practice_9/class");
 describe("Person", () => {
     it("should have field name and age", () => {
         const person = new Person(1, "Tom", 21);
@@ -16,11 +20,12 @@ describe("Person", () => {
     describe("Student", () => {
         let klass;
 
-        before(() => {
-            klass = new Class(2);
-        });
+        // before(() => {
+        //     klass = new Class(2);
+        // });
 
         it("should have field name, age and class number", () => {
+            klass = new Class(2);
             const student = new Student(1, "Tom", 21, klass);
             expect(student.name).toEqual("Tom");
             expect(student.age).toEqual(21);
@@ -29,6 +34,7 @@ describe("Person", () => {
 
         describe("#introduce", () => {
             it("should overwrite Person introduce, introduce with name, age and class number", () => {
+                klass = new Class(2);
                 const student = new Student(1, "Tom", 21, klass);
                 const introduce = student.introduce();
 
@@ -50,11 +56,12 @@ describe("Person", () => {
     describe("Teacher", () => {
         let klass;
 
-        before(() => {
-            klass = new Class(2);
-        });
+        // before(() => {
+        //     klass = new Class(2);
+        // });
 
         it("should have field name, age and class number", () => {
+            klass = new Class(2);
             const teacher = new Teacher(1, "Tom", 21, klass);
             expect(teacher.name).toEqual("Tom");
             expect(teacher.age).toEqual(21);
@@ -63,6 +70,7 @@ describe("Person", () => {
 
         describe("#introduce", () => {
             it("should overwrite Person introduce, introduce with name, age and class number, given teacher have class", () => {
+                klass = new Class(2);
                 const teacher = new Teacher(1, "Tom", 21, klass);
                 const introduce = teacher.introduce();
                 expect(introduce).toEqual("My name is Tom. I am 21 years old. I am a Teacher. I teach Class 2.");
@@ -93,14 +101,14 @@ describe("Class", () => {
         let sandbox;
         let spy;
 
-        before(()=>{
-            sandbox = sinon.sandbox.create();
-            spy = sandbox.stub(console, 'log');
-        });
-
-        after(() => {
-          sandbox.restore();
-        });
+        // before(()=>{
+        //     sandbox = sinon.sandbox.create();
+        //     spy = sandbox.stub(console, 'log');
+        // });
+        //
+        // after(() => {
+        //   sandbox.restore();
+        // });
 
 
         it("should assign student as Leader, given student is class member", () => {
@@ -118,7 +126,7 @@ describe("Class", () => {
 
             klass.assignLeader(student);
 
-            expect(klass.leader).not.equal(student);
+            expect(klass.leader).not.toEqual(student);
         });
 
         it("should not assign student as Leader, given student is not class member", () => {
@@ -128,9 +136,12 @@ describe("Class", () => {
 
             klass.assignLeader(student);
 
-            expect(klass.leader).not.equal(student);
+            expect(klass.leader).not.toEqual(student);
+            expect(console.log).toHaveBeenCalledWith("It is not one of us.");
+            // expect()
             //expect(console.log.getCall(0).args[0]).toEqual("It is not one of us."); //assert style 2.
-            expect(spy.calledWith("It is not one of us.")).to.be.ok;
+            // expect(spy.calledWith("It is not one of us.")).to.be.ok;
+
         });
     });
 
